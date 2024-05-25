@@ -17,7 +17,7 @@ types = {
 
 @app_views.route('/status', strict_slashes=False)
 def status():
-    """status"""
+    """retrive response status"""
     return jsonify({"status": "OK"})
 
 
