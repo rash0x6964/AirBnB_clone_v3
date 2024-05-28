@@ -41,6 +41,8 @@ def delete_state(state_id):
 @app_views.route('/states/', methods=['POST'], strict_slashes=False)
 def post_state():
     """create a new state"""
+    if request.headers['Content-Type'] != 'application/json':
+        abort(400, 'Content-Type must be application/json')
     if not request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     if 'name' not in request.get_json():
@@ -54,6 +56,8 @@ def post_state():
                  strict_slashes=False)
 def put_state(state_id):
     """update a state"""
+    if request.headers['Content-Type'] != 'application/json':
+        abort(400, 'Content-Type must be application/json')
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
