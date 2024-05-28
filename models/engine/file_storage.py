@@ -73,7 +73,7 @@ class FileStorage:
         """retrieve a object"""
         if not cls or not id:
             return None
-        return self.all(cls).get(f'{cls.__name__}.{id}')
+        return self.all(cls).get('{}.{}'.format(cls.__name__, id))
 
     def count(self, cls=None):
         """count the number of objects in storage."""
