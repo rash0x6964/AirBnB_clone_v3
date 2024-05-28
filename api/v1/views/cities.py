@@ -47,6 +47,8 @@ def delete_city(city_id):
                  strict_slashes=False)
 def post_city(state_id):
     """create a new city"""
+    if request.headers['Content-Type'] != 'application/json':
+        abort(400, 'Content-Type must be application/json')
     state = storage.get(State, state_id)
     if state is None:
         abort(404)
@@ -65,6 +67,8 @@ def post_city(state_id):
                  strict_slashes=False)
 def put_city(city_id):
     """update a city"""
+    if request.headers['Content-Type'] != 'application/json':
+        abort(400, 'Content-Type must be application/json')
     city = storage.get(City, city_id)
     if city is None:
         abort(404)

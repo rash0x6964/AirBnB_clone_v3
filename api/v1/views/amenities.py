@@ -41,6 +41,8 @@ def delete_amenity(amenity_id):
 @app_views.route('/amenities', methods=['POST'], strict_slashes=False)
 def post_amenity():
     """create a new amenity"""
+    if request.headers['Content-Type'] != 'application/json':
+        abort(400, 'Content-Type must be application/json')
     if not request.get_json():
         return make_response(jsonify({'error': 'Not a JSON'}), 400)
     if 'name' not in request.get_json():
@@ -54,6 +56,8 @@ def post_amenity():
                  strict_slashes=False)
 def put_amenity(amenity_id):
     """update an amenity"""
+    if request.headers['Content-Type'] != 'application/json':
+        abort(400, 'Content-Type must be application/json')
     amenity = storage.get(Amenity, amenity_id)
     if amenity is None:
         abort(404)

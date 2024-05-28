@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Handles all default RESTFul API actions Users"""
+"""Handles all default RESTFul API actions for Users"""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, make_response, request
